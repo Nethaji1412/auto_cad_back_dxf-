@@ -1,0 +1,40 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+
+# --- database ---
+sqlalchemy==2.0.35
+pymysql==1.1.1
+cryptography==43.0.1
+alembic==1.13.2
+
+# --- auth / security ---
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+python-multipart==0.0.9
+
+# --- config ---
+pydantic==2.9.2
+pydantic-settings==2.5.2
+email-validator==2.2.0
+
+# --- rate limiting / caching (Redis-ready; in-memory limiter needs neither
+#     to run, but the docker-compose stack ships Redis for when a
+#     Redis-backed limiter or Celery broker is wired in) ---
+redis==5.0.8
+
+# --- existing engineering pipeline dependencies (unchanged from the
+#     original project's requirements.txt) ---
+shapely==2.0.6
+ezdxf==1.3.3
+matplotlib==3.9.2
+# pandas is a genuine transitive dependency of the real core/pipeline.py
+# (used to build the "TYPICAL PLANT DETAILS" title-block table) -- it was
+# missing from the original project's requirements.txt, so it's added here
+# for the pipeline to actually import; this is a packaging fix, not a
+# behavior change.
+pandas==2.2.3
+
+# --- tests ---
+pytest==8.3.3
+httpx==0.27.2
